@@ -1,8 +1,13 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import University from "../homepage/University";
+import Login from "../loginpage/Login";
+import Register from "../signuppage/Register";
 import '../App.css';
 
-export default function Mainbody() {
+export default function Home() {
+  const navigate = useNavigate();
+
   const images = [
     "cbu.jpeg",
     "cbu2.jpg",
@@ -48,20 +53,32 @@ export default function Mainbody() {
 
   return (
     <div>
-        <div className="animation">
-          <img src={images[currentImageIndex]} alt="Switching images" className="switcher" />
-          <div className="notes">
-            <h1>Education is the best investment!</h1>
-            <h3>Here is why you ought to enroll at the best university:</h3>
-            <div className="arrow-div">
-              <img src="arrow.png" className="arrow" alt="arrow" />
-              <p className="myquote">"{quotes[currentQuoteIndex]}"</p>
-            </div>
-          </div>
-          
+      {/* Header Section */}
+      <nav className="navbar">
+        <img src="uni.jpeg" className="logo" alt="contentment" />
+        <h1 className="title">Find My University</h1>
+        <div className="buttons">
+          <button className="home" onClick={() => navigate('/')}>Home</button>
+          <button className="login" onClick={() => navigate('/login')}>Login</button>
+          <button className="sign-up" onClick={() => navigate('/register')}>Sign Up</button>
         </div>
-        <University />
+      </nav>
+
+      {/* Mainbody Section */}
+      <div className="animation">
+        <img src={images[currentImageIndex]} alt="Switching images" className="switcher" />
+        <div className="notes">
+          <h1>Education is the best investment!</h1>
+          <h3>Here is why you ought to enroll at the best university:</h3>
+          <div className="arrow-div">
+            <img src="arrow.png" className="arrow" alt="arrow" />
+            <p className="myquote">"{quotes[currentQuoteIndex]}"</p>
+          </div>
+        </div>
+      </div>
+
+      {/* University Component */}
+      <University />
     </div>
-    
   );
 }
