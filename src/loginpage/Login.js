@@ -11,10 +11,10 @@ export default function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8080/api/users/login', { email, password })
+        axios.post('http://localhost:8082/api/users/login', { email, password })
             .then(response => {
                 localStorage.setItem('token', response.data.token);
-                navigate('/home');
+                navigate('/'); // Navigate to home page
             })
             .catch(error => {
                 setErrorMessage('Invalid email or password');
